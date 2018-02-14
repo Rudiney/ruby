@@ -16,21 +16,21 @@ describe PagSeguro::TransactionRequest::ResponseSerializer do
     it { expect(data).to include(payment_method: {type_id: "1", code: "101"}) }
     it { expect(data).to include(payment_link: "https://pagseguro.uol.com.br/checkout/imprimeBoleto.jhtml?code=314601B208B24A5CA5
   3260000F7BB0D0") }
-    it { expect(data).to include(gross_amount: BigDecimal("49900.00")) }
-    it { expect(data).to include(discount_amount: BigDecimal("0.00")) }
-    it { expect(data).to include(net_amount: BigDecimal("49900.50")) }
-    it { expect(data).to include(extra_amount: BigDecimal("0.00")) }
+    it { expect(data).to include(gross_amount: to_bigdecimal("49900.00")) }
+    it { expect(data).to include(discount_amount: to_bigdecimal("0.00")) }
+    it { expect(data).to include(net_amount: to_bigdecimal("49900.50")) }
+    it { expect(data).to include(extra_amount: to_bigdecimal("0.00")) }
     it { expect(data).to include(installment_count: 1) }
 
     it { expect(data[:items].size).to eq(2) }
     it { expect(data[:items].first).to include(id: "0001") }
     it { expect(data[:items].first).to include(description: "Notebook Prata") }
     it { expect(data[:items].first).to include(quantity: 1) }
-    it { expect(data[:items].first).to include(amount: BigDecimal("24300.00")) }
+    it { expect(data[:items].first).to include(amount: to_bigdecimal("24300.00")) }
     it { expect(data[:items][1]).to include(id: "0002") }
     it { expect(data[:items][1]).to include(description: "Notebook Rosa") }
     it { expect(data[:items][1]).to include(quantity: 1) }
-    it { expect(data[:items][1]).to include(amount: BigDecimal("25600.00")) }
+    it { expect(data[:items][1]).to include(amount: to_bigdecimal("25600.00")) }
 
     it { expect(data[:sender]).to include(name: "Jose Comprador") }
     it { expect(data[:sender]).to include(email: "comprador@uol.com.br") }
@@ -38,7 +38,7 @@ describe PagSeguro::TransactionRequest::ResponseSerializer do
     it { expect(data[:sender][:phone]).to include(number: "56273440") }
 
     it { expect(data[:shipping]).to include(type_id: "1") }
-    it { expect(data[:shipping]).to include(cost: BigDecimal("21.50")) }
+    it { expect(data[:shipping]).to include(cost: to_bigdecimal("21.50")) }
 
     it { expect(data[:shipping][:address]).to include(street: "Av. Brig. Faria Lima") }
     it { expect(data[:shipping][:address]).to include(number: "1384") }
