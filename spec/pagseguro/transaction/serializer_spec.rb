@@ -83,4 +83,10 @@ describe PagSeguro::Transaction::Serializer do
     it { expect(data[:status]).to be_nil }
     it { expect(data[:type]).to be_nil }
   end
+
+  def to_bigdecimal(value)
+    BigDecimal(value)
+  rescue Exception => e
+    0
+  end
 end

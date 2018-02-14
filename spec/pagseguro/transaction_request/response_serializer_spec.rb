@@ -49,4 +49,10 @@ describe PagSeguro::TransactionRequest::ResponseSerializer do
     it { expect(data[:shipping][:address]).to include(country: "BRA") }
     it { expect(data[:shipping][:address]).to include(postal_code: "01452002") }
   end
+
+  def to_bigdecimal(value)
+    BigDecimal(value)
+  rescue Exception => e
+    0
+  end
 end

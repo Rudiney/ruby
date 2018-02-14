@@ -173,6 +173,14 @@ module PagSeguro
 
         status.text if status
       end
+
+      private
+
+      def to_bigdecimal(value)
+        BigDecimal(value)
+      rescue Exception => e
+        0
+      end
     end
   end
 end

@@ -112,6 +112,14 @@ module PagSeguro
       def address_node
         @address_node ||= xml.css("shipping > address")
       end
+
+      private
+      
+      def to_bigdecimal(value)
+        BigDecimal(value)
+      rescue Exception => e
+        0
+      end
     end
   end
 end

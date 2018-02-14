@@ -44,7 +44,13 @@ module PagSeguro
       end
 
       def to_amount(amount)
-        "%.2f" % to_bigdecimal(amount.to_s).round(2).to_s("F") if amount
+        "%.2f" % to_bigdecimal(amount.to_s).round(2) if amount
+      end
+
+      def to_bigdecimal(value)
+        BigDecimal(value)
+      rescue Exception => e
+        0
       end
     end
   end
